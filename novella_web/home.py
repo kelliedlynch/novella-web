@@ -1,9 +1,8 @@
-from flask import Blueprint
+import flask
 
-# from novella_web import app
+home = flask.Blueprint('home', __name__, template_folder='templates')
 
-home = Blueprint('home', __name__, template_folder='templates')
 
 @home.route('/')
 def index():
-    return 'Hello, world!'
+    return flask.render_template('login.html')

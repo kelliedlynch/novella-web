@@ -12,10 +12,9 @@ DEFAULT_BLUEPRINTS = (
 
 def create_app():
 
-    app_name = DEFAULT_APP_NAME
     blueprints = DEFAULT_BLUEPRINTS
 
-    app = Flask(app_name)
+    app = Flask(__name__)
 
     configure_app(app)
     configure_extensions(app)
@@ -26,7 +25,7 @@ def create_app():
 
 
 def configure_app(app):
-    app.config.from_pyfile('novella_web/config.py')
+    app.config.from_pyfile('config.py')
     app.config.from_envvar('APP_CONFIG', silent=True)
 
 
