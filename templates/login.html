@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div class="panel panel-default login-form">
+        <div class="panel-heading">
+            <h1 class="panel-title">
+                Please sign in
+            </h1>
+        </div>
+        <div class="panel-body">
+            <form role="form">
+                <div class="form-group">
+                    {{ login_form.email(placeholder=login_form.email.description.placeholder, class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ login_form.password(placeholder=login_form.password.description.placeholder, class="form-control") }}
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>{{ login_form.remember_me }} Remember Me</label>
+                    </div>
+                </div>
+
+                {{ login_form.submit(class="btn btn-primary btn-lg btn-block") }}
+            </form>
+        </div>
+    </div>
+{% endblock %}

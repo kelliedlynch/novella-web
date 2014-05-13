@@ -1,6 +1,6 @@
 from flask import Flask
 
-from novella_web.home import home
+from home import home
 
 __all__ = ['create_app']
 
