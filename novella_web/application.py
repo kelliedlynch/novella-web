@@ -1,24 +1,20 @@
 from flask import Flask
+from flask_login import LoginManager
 
-from home import home
+from extensions import db
 
 __all__ = ['create_app']
 
 DEFAULT_APP_NAME = 'novella-web'
 
-DEFAULT_BLUEPRINTS = (
-    (home, '/'),
-)
 
 def create_app():
-
-    blueprints = DEFAULT_BLUEPRINTS
 
     app = Flask(__name__)
 
     configure_app(app)
     configure_extensions(app)
-    configure_blueprints(app, blueprints)
+    configure_blueprints(app)
     configure_before_handlers(app)
 
     return app
@@ -42,9 +38,11 @@ def configure_before_handlers(app):
 
 
 def configure_extensions(app):
-    pass
+    login_manager = LoginManager()
+    login_manager.init_app(app)
+
     # mail.init_app(app)
-    # db.init_app(app)
+    db.init_app(app)
     # oid.init_app(app)
     # cache.init_app(app)
     #
