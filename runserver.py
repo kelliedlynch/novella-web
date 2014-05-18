@@ -1,6 +1,4 @@
-from application import create_app
-
-app = create_app()
+from novella_web import app
 
 if __name__ == '__main__':
     app.run(debug=True)
