@@ -33,8 +33,22 @@ class ButtonField(Field):
 
 class LoginForm(Form):
     email = StringField(description={'placeholder': 'Email Address'},
-                        validators=[validators.Email(message="Please enter a valid email address.")])
-    password = PasswordField(description={'placeholder': 'Password'}, validators=[validators.Length(min=6,
-                                                    max=16, message="Password is incorrect.")])
+                        validators=[validators.Email(message='Please enter a valid email address.'),
+                                    validators.Required(message='Please enter your email address.')])
+    password = PasswordField(description={'placeholder': 'Password'},
+                             validators=[validators.Length(min=6, max=16, message='Password is incorrect.'),
+                                         validators.Required(message='Please enter your password.')])
     remember_me = BooleanField()
     submit = ButtonField(text='Log In')
+    
+class RegisterForm(Form):
+    email = StringField(description={'placeholder': 'Email Address'},
+                        validators=[validators.Email(message='Please enter a valid email address.'),
+                                    validators.Required(message='Email address is required.')])
+    password = PasswordField(description={'placeholder': 'Password'}, validators=[validators.Length(min=6,
+                             max=32, message='Password must be between 6 and 32 characters.'),
+                             validators.Required(message='Password is required.')])
+    confirm_password = PasswordField(description={'placeholder': 'Confirm Password'},
+                                     validators=[validators.EqualTo(password, message='Passwords do not match.'),
+                                                 validators.Required(message='Please confirm your password')])
+    submit = ButtonField(text='Register')
