@@ -33,8 +33,8 @@ class ButtonField(Field):
 
 class LoginForm(Form):
     email = StringField(description={'placeholder': 'Email Address'},
-                        validators=validators.Email(message="Please enter a valid email address"))
-    password = PasswordField(description={'placeholder': 'Password'}, validators=validators.Length(min=6,
-                                                    max=16, message="Must be between 6 and 16 characters"))
+                        validators=[validators.Email(message="Please enter a valid email address.")])
+    password = PasswordField(description={'placeholder': 'Password'}, validators=[validators.Length(min=6,
+                                                    max=16, message="Password is incorrect.")])
     remember_me = BooleanField()
     submit = ButtonField(text='Log In')

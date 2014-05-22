@@ -2,6 +2,17 @@
 
 
 {% block content %}
+    <div>
+        {% for field in login_form %}
+            {% if field.errors %}
+                {% for error in field.errors %}
+                    <div class="alert alert-danger">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+    </div>
     <div class="panel panel-default login-form">
         <div class="panel-heading">
             <h1 class="panel-title">
@@ -9,7 +20,7 @@
             </h1>
         </div>
         <div class="panel-body">
-            <form role="form">
+            <form role="form" method="post" action="{{ url_for('users.login') }}">
                 <div class="form-group">
                     {{ login_form.email(placeholder=login_form.email.description.placeholder, class="form-control") }}
                 </div>

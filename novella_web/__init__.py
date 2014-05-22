@@ -1,8 +1,10 @@
 from importlib import import_module
 
-from flask import Flask
+from flask import Flask, g
 from flask_login import LoginManager
-from flask_sqlalchemy import SQLAlchemy
+
+from extensions import db
+from users import User
 
 def create_app():
 
@@ -45,6 +47,10 @@ def configure_extensions(app):
     login_manager = LoginManager()
     login_manager.init_app(app)
 
-app = create_app()
+    @login_manager.user_loader
+    def load_user(userid):
+        return User.get(userid)
 
-db = SQLAlchemy(app)
+    db.init_app(app)
+
+app = create_app()

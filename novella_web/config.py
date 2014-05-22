@@ -1,4 +1,4 @@
 VARIABLE = 'value'
-DATABASE_URL = 'postgresql://root@localhost/novella_web'
+SQLALCHEMY_DATABASE_URI = 'postgresql://kellie@localhost/novella_web'
 DEFAULT_BLUEPRINTS = ['main', 'users']
 APP_SECRET_KEY = 'soopersekrit'
