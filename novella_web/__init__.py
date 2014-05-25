@@ -3,7 +3,7 @@ from importlib import import_module
 from flask import Flask, g
 from flask_login import LoginManager
 
-from extensions import db
+from extensions import db, bcrypt
 from users import User
 
 def create_app():
@@ -52,5 +52,6 @@ def configure_extensions(app):
         return User.get(userid)
 
     db.init_app(app)
+    bcrypt.init_app(app)
 
 app = create_app()

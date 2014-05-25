@@ -49,6 +49,6 @@ class RegisterForm(Form):
                              max=32, message='Password must be between 6 and 32 characters.'),
                              validators.Required(message='Password is required.')])
     confirm_password = PasswordField(description={'placeholder': 'Confirm Password'},
-                                     validators=[validators.EqualTo(password, message='Passwords do not match.'),
+                                     validators=[validators.EqualTo('password', message='Passwords do not match.'),
                                                  validators.Required(message='Please confirm your password')])
     submit = ButtonField(text='Register')
