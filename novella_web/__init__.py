@@ -48,8 +48,8 @@ def configure_extensions(app):
     login_manager.init_app(app)
 
     @login_manager.user_loader
-    def load_user(userid):
-        return User.get(userid)
+    def load_user(id):
+        return User.query.filter_by(id=id).first()
 
     db.init_app(app)
     bcrypt.init_app(app)

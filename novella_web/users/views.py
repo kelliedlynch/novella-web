@@ -1,6 +1,6 @@
 from flask import Blueprint
-from flask import request, render_template
-from flask_login import login_user, current_user
+from flask import request, render_template, redirect, url_for
+from flask_login import login_user, current_user, logout_user
 
 from forms import LoginForm, RegisterForm
 from models import User
@@ -16,14 +16,19 @@ def login():
     if request.method == 'POST' and login_form.validate():
         u = User.query.filter_by(email=request.form['email']).first()
         if bcrypt.check_password_hash(u.password, login_form.password.data):
-            print 'successfully logged in'
-            login_user(current_user)
-            print current_user
+            login_user(u)
+            login_form = LoginForm()
         return render_template('login.html', login_form=login_form)
     elif request.method == 'POST':
         return render_template('login.html', login_form=login_form)
     else:
         return render_template('login.html', login_form=login_form)
+
+
+@users.route('/logout/')
+def logout():
+    logout_user()
+    return redirect(url_for('.login'))
 
 
 @users.route('/register/', methods=['GET', 'POST'])

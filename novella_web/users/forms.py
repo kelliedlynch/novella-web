@@ -40,7 +40,8 @@ class LoginForm(Form):
                                          validators.Required(message='Please enter your password.')])
     remember_me = BooleanField()
     submit = ButtonField(text='Log In')
-    
+
+
 class RegisterForm(Form):
     email = StringField(description={'placeholder': 'Email Address'},
                         validators=[validators.Email(message='Please enter a valid email address.'),
